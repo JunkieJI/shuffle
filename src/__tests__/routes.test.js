@@ -1,6 +1,6 @@
 //routes.test.js
 const request = require('supertest');
-const server = require('../app.js');
+const server = require('../index.js');
 
 beforeAll(async () => {
   // do something before anything else runs
