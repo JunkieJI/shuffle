@@ -2,13 +2,10 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import mongoose from 'mongoose';
-import routing from './routes/';
+import { router } from './routes';
 import { port, connectionString } from './config';
 
-/*
-* Mongoose config
-*/
-
+/* * Mongoose config * */
 mongoose.connect(connectionString, { useNewUrlParser: true });
 mongoose.connection.on('error', console.error);
 
@@ -30,7 +27,7 @@ app.use(async (ctx, next) => {
   }
 });
 
-routing(app);
+app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(port, () =>
   console.log(`✅  The server is running at http://localhost:${port}/`)

@@ -1,13 +1,13 @@
-import routesLoader from '../utils/routesLoader';
+import Router from 'koa-router';
+import { baseApi } from '../config';
+import EpisodeRouter from './epidode';
+import SeriesRouter from './series';
 
-export default function(app) {
-  routesLoader(`${__dirname}`).then(files => {
-    files.forEach(route => {
-      app.use(route.routes()).use(
-        route.allowedMethods({
-          throw: true
-        })
-      );
-    });
-  });
-}
+const router = new Router();
+
+router.prefix(`/${baseApi}`);
+
+EpisodeRouter({ router });
+SeriesRouter({ router });
+
+export { router };

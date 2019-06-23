@@ -15,12 +15,12 @@ const episodeSchema = new Schema({
     type: Number,
     required: true
   },
-  episodeNumber: {
+  episode_number: {
     type: Number,
     required: true
   },
-  series: { // TODO: create series schema
-    type: String,
+  series_id: {
+    type: Number,
     required: true
   },
   url: {
