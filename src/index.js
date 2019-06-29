@@ -29,6 +29,8 @@ app.use(async (ctx, next) => {
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(port, () =>
+const server = app.listen(port, () =>
   console.log(`✅  The server is running at http://localhost:${port}/`)
 );
+
+module.exports = { server };

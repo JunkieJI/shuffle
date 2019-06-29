@@ -9,7 +9,7 @@ class EpisodeControllers {
     try {
       const episode = await Episode.findById(ctx.params.id);
       if (!episode) {
-        ctx.throw(409);
+        ctx.throw(404);
       }
       ctx.body = episode;
     } catch (err) {
@@ -22,15 +22,6 @@ class EpisodeControllers {
 
   async find(ctx) {
     ctx.body = await Episode.find();
-  }
-
-  async add(ctx) {
-    try {
-      const episode = await new Episode(ctx.request.body).save();
-      ctx.body = episode;
-    } catch (err) {
-      ctx.throw(422);
-    }
   }
 }
 

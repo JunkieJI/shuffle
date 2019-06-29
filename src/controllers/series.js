@@ -9,7 +9,7 @@ class SeriesController {
     try {
       const series = await Series.findById(ctx.params.id);
       if (!series) {
-        ctx.throw(409);
+        ctx.throw(404);
       }
       ctx.body = series;
     } catch (err) {
@@ -22,15 +22,6 @@ class SeriesController {
 
   async find(ctx) {
     ctx.body = await Series.find();
-  }
-
-  async add(ctx) {
-    try {
-      const series = await new Series(ctx.request.body).save();
-      ctx.body = series;
-    } catch (err) {
-      ctx.throw(422);
-    }
   }
 }
 
