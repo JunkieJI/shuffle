@@ -2,11 +2,15 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+
 import { router } from './routes';
 import { port, connectionString } from './config';
 
+dotenv.config();
 /* * Mongoose config * */
-mongoose.connect(connectionString, { useNewUrlParser: true });
+const url = process.env.MONGO_URL || connectionString;
+mongoose.connect(url, { useNewUrlParser: true });
 mongoose.connection.on('error', console.error);
 
 const app = new Koa();
